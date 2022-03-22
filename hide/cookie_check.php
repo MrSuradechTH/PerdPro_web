@@ -1,5 +1,5 @@
 <?php
-$cookie_name = "test";
+$cookie_name = "perdpro";
 ?>
 <html>
 <body>

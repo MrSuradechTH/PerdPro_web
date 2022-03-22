@@ -1,0 +1,12 @@
+<?php
+// var a = <?php header("Location: main");
+// window.location.href=window.location.href+'?clicked=3'
+?>
+
+// $loop = strlen($password);
+// $password_hide = "";
+// for ($x = 0; $x < $loop; $x++) {
+// $password_hide .= "•";
+// }
+
+<link href="style.css?<?=filemtime("style.css")?>" rel="stylesheet" type="text/css" />
