@@ -1,11 +1,11 @@
 <?php
-session_start();
-require_once 'connect_mysql.php';
+	session_start();
+	require_once 'connect_mysqli.php';
 ?>
 
 <html>
 	<head>
-		<link rel = "stylesheet" href = "styles.css">
+		<link rel = "stylesheet" href = "styles.css?v = <?php echo time(); ?>"/>
 		<link rel = "icon" href = "source/logo_perdpro.png">
 		<title>PerdPro</title>
 	</head>
@@ -13,7 +13,7 @@ require_once 'connect_mysql.php';
 		<center>
 			<div>
 				<div>
-					<img class = "image_rainbow" src = "source/logo_perdpro.png" width = "200" height = "200" onclick = "location = 'home'"/>
+					<img class = "image_rainbow pointer" src = "source/logo_perdpro.png" width = "200px" height = "200px"/>
 				</div>
 				<?php
 					$name_save = "perdpro";
@@ -33,7 +33,7 @@ require_once 'connect_mysql.php';
 								header("Location: home");
 								exit();
 							}else {
-								setcookie($name_save, $array_str, time() - (60 * 15));
+								setcookie($name_save, null, -1, '/');
 								unset($_SESSION[$name_save]);
 							}
 						}else {
@@ -57,7 +57,9 @@ require_once 'connect_mysql.php';
 					if (isset($_POST['login'])) {
 						$username = $_POST['username_input'];
 						$password = $_POST['password_input'];
-						if ($username != "" && $password != "") {
+						if ($username == "" && $password == "") {
+							echo '<span class = "text_rainbow">Has Null Input!!!</span>';
+						}else {
 							$query = mysqli_query($con, "SELECT * FROM user_info WHERE  username = '$username' and password = '$password'");
 							$num_row = mysqli_num_rows($query);
 							if ($num_row > 0) {
@@ -66,7 +68,7 @@ require_once 'connect_mysql.php';
 								if (!empty($_POST['remember'])) {
 									setcookie($name_save, $array_str, time() + (60 * 15));
 								}else {
-									setcookie($name_save, $array_str, time() - (60 * 15));
+									setcookie($name_save, null, -1, '/');
 								}
 								$_SESSION[$name_save] = $array_str;
 								header("Location: home");
@@ -74,21 +76,18 @@ require_once 'connect_mysql.php';
 							}else {
 								echo '<span class = "text_rainbow">Login Fail!!!</span>';
 							}
-						}else {
-							echo '<span class = "text_rainbow">Has Null Input!!!</span>';
 						}
-						
 					}else if (isset($_POST['register'])) {
 						header("Location: register");
 						exit();
 					}
 				?>
 				<script>
-				function myFunction() {
-				  document.getElementById("input_username").value = "";
-				  document.getElementById("input_password").value = "";
-				  document.getElementById("input_username").placeholder = "Username";
-				  document.getElementById("input_password").placeholder = "Password";
+				function reset() {
+				  document.getElementById("username_input").value = "";
+				  document.getElementById("password_input").value = "";
+				  document.getElementById("username_input").placeholder = "Username";
+				  document.getElementById("password_input").placeholder = "Password";
 				}
 				</script>
 				<br></br>
@@ -96,25 +95,25 @@ require_once 'connect_mysql.php';
 					<form method = "post">
 						<div>
 							<label class = "text_rainbow">Username : </label>
-							<input class = "input_rainbow" type = "text" id = "input_username" name = "username_input" placeholder = "Username" maxlength = "25" size = "25" autofocus onClick = "this.placeholder = ''"></input>
+							<input class = "input_rainbow" type = "text" id = "username_input" name = "username_input" placeholder = "Username" maxlength = "12" size = "25" autofocus onClick = "this.placeholder = ''"></input>
 							<br></br>
 							<label class = "text_rainbow padding">&nbsp;Password : </label>
-							<input class = "input_rainbow" type = "password" id = "input_password" name = "password_input" placeholder = "Password" maxlength = "25" size = "25" onClick = "this.placeholder = ''"></input>
+							<input class = "input_rainbow" type = "password" id = "password_input" name = "password_input" placeholder = "Password" maxlength = "25" size = "25" onClick = "this.placeholder = ''"></input>
 						</div>
 						<div>
-							<input class = "input_check_box" type = "checkbox" name = "remember"/>
-							<label class = "text_rainbow" for = "vehicle1">remember</label><br>
+							<input class = "input_check_box pointer" type = "checkbox" id = "remember" name = "remember"/>
+							<label class = "text_rainbow pointer" for = "remember">remember</label><br>
 						</div>
 						<div>
-							<input class = "input_rainbow" type = "submit" name = "login"  value = "Login"> </input>
-							<input class = "input_rainbow" type = "submit" name = "register" value = "Register" onclick = "myFunction()"</input>
+							<input class = "input_rainbow pointer" type = "submit" name = "login"  value = "Login"> </input>
+							<input class = "input_rainbow pointer" type = "submit" name = "register" value = "Register" onclick = "reset()"</input>
 						</div>
 					</form>
 				</div>
 				<div>
 					<span class = "text_rainbow">Create By MrSuradechTH</span>
 					<br></br>
-					<span class = "text_rainbow">Start project at 14/04/2021</span>
+					<span class = "text_rainbow">Start project on 14/04/2021</span>
 				</div>
 			</div>
 		</center>

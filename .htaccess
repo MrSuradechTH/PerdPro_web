@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteRule ^main  main.php [NC,L] 
+RewriteRule ^home  home.php [NC,L]
+RewriteRule ^login  login.php [NC,L]
+RewriteRule ^register  register.php [NC,L]
+RewriteRule ^logout  logout.php [NC,L]
+RewriteRule ^profile  profile.php [NC,L]
+DirectoryIndex main.php

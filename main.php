@@ -1,10 +1,10 @@
 <?php
-session_start();
-require_once 'connect_mysql.php';
+	session_start();
+	require_once 'connect_mysqli.php';
 ?>
 <html>
 	<head>
-		<link rel = "stylesheet"  href = "styles.css">
+		<link rel = "stylesheet" href = "styles.css?v = <?php echo time(); ?>"/>
 		<link rel = "icon" href = "source/logo_perdpro.png">
 		<title>PerdPro</title>
 		<?php
@@ -24,7 +24,7 @@ require_once 'connect_mysql.php';
 						$_SESSION[$name_save] = $array_str;
 						$url = '3;url=home';
 					}else {
-						setcookie($name_save, $array_str, time() - (60 * 15));
+						setcookie($name_save, null, -1, '/');
 						unset($_SESSION[$name_save]);
 						$url = '3;url=login';
 					}
@@ -57,7 +57,7 @@ require_once 'connect_mysql.php';
 				<br></br>
 				<br></br>
 				<br></br>
-				<img class = "image_rainbow" src = "source/logo_perdpro.png" width = "200" height = "200" onclick = "location = 'login'"/>
+				<img class = "image_rainbow pointer" src = "source/logo_perdpro.png" width = "200" height = "200" onclick = "location = 'login'"/>
 			</div>
 		</center>
 	</body>

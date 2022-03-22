@@ -1,4 +1,5 @@
 <?php
+	require_once 'connect_mysqli.php';
 	session_start();
 	$name_save = "perdpro";
 	if(isset($_COOKIE[$name_save]) or isset($_SESSION[$name_save])) {
@@ -15,7 +16,7 @@
 				setcookie($name_save, $array_str, time() + (60 * 15));
 				$_SESSION[$name_save] = $array_str;
 			}else {
-				setcookie($name_save, $array_str, time() - (60 * 15));
+				setcookie($name_save, null, -1, '/');
 				unset($_SESSION[$name_save]);
 				header("Location: login");
 				exit();
