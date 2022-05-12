@@ -82,14 +82,6 @@
 						exit();
 					}
 				?>
-				<script>
-				function reset() {
-				  document.getElementById("username_input").value = "";
-				  document.getElementById("password_input").value = "";
-				  document.getElementById("username_input").placeholder = "Username";
-				  document.getElementById("password_input").placeholder = "Password";
-				}
-				</script>
 				<br></br>
 				<div>
 					<form method = "post">
@@ -97,7 +89,7 @@
 							<label class = "text_rainbow">Username : </label>
 							<input class = "input_rainbow" type = "text" id = "username_input" name = "username_input" placeholder = "Username" maxlength = "12" size = "25" autofocus onClick = "this.placeholder = ''"></input>
 							<br></br>
-							<label class = "text_rainbow padding">&nbsp;Password : </label>
+							<label class = "text_rainbow">&nbsp;Password : </label>
 							<input class = "input_rainbow" type = "password" id = "password_input" name = "password_input" placeholder = "Password" maxlength = "25" size = "25" onClick = "this.placeholder = ''"></input>
 						</div>
 						<div>
@@ -105,10 +97,18 @@
 							<label class = "text_rainbow pointer" for = "remember">remember</label><br>
 						</div>
 						<div>
-							<input class = "input_rainbow pointer" type = "submit" name = "login"  value = "Login"> </input>
-							<input class = "input_rainbow pointer" type = "submit" name = "register" value = "Register" onclick = "reset()"</input>
+							<input class = "input_rainbow pointer" type = "submit" name = "login"  value = "Login"></input>
+							<input class = "input_rainbow pointer" type = "submit" name = "register" value = "Register" onclick = "reset()"></input>
 						</div>
 					</form>
+					<script>
+						function reset() {
+						  document.getElementById("username_input").value = "";
+						  document.getElementById("password_input").value = "";
+						  document.getElementById("username_input").placeholder = "Username";
+						  document.getElementById("password_input").placeholder = "Password";
+						}
+					</script>
 				</div>
 				<div>
 					<span class = "text_rainbow">Create By MrSuradechTH</span>

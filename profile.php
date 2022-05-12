@@ -5,6 +5,7 @@
 <html>
 	<head>
 		<link rel = "stylesheet" href = "styles.css?v = <?php echo time(); ?>"/>
+		<link rel = "stylesheet" href = "styles_profile.css?v = <?php echo time(); ?>"/>
 		<link rel = "icon" href = "source/logo_perdpro.png">
 		<title>PerdPro</title>
 	</head>
@@ -26,7 +27,6 @@
 						<br></br>
 						<?php
 							if (isset($_POST['save'])) {
-								$time = date("d/m/Y H:i:s",strtotime('+7 hours, +543 year'));
 								$username_new = $_POST['username_input'];
 								$password_new = $_POST['password_input'];
 								if (!empty($_FILES["file"]["name"])) {
@@ -36,10 +36,11 @@
 										$file_name = $_FILES["file"]["name"];
 										$file_type = pathinfo($file_name,PATHINFO_EXTENSION);
 										$file_tmp = $_FILES["file"]["tmp_name"];
+										$path_new = "photo/profile/" . $username . "." . $file_type;
 										
+										$time = date("d/m/Y H:i:s",strtotime('+7 hours, +543 year'));
 										if ($username == $username_new and $password == $password_new) {
 											unlink($path_old);
-											$path_new = "photo/profile/" . $username . "." . $file_type;
 											move_uploaded_file($file_tmp, $path_new);
 											$query = mysqli_query($con, "UPDATE user_info SET image = '$path_new',time = '$time' WHERE gmail = '$gmail'");
 											$result = mysqli_affected_rows($con);
@@ -68,7 +69,6 @@
 													$_SESSION[$name_save] = $array_str;
 														
 													unlink($path_old);
-													$path_new = "photo/profile/" . $username . "." . $file_type;
 													move_uploaded_file($file_tmp, $path_new);
 													$query = mysqli_query($con, "UPDATE user_info SET image = '$path_new',time = '$time' WHERE gmail = '$gmail'");
 													$result = mysqli_affected_rows($con);
@@ -123,27 +123,11 @@
 						<label class = "text_rainbow">Username : </label>
 						<input class = "input_rainbow" type = "text" name = "username_input" value = "<?php echo $username; ?>" maxlength = "12" size = "25" autofocus"></input>
 						<br></br>
-						<label class = "text_rainbow padding">&nbsp;Password : </label>
+						<label class = "text_rainbow">&nbsp;Password : </label>
 						<input class = "input_rainbow" type = "password" id = "password_input" name = "password_input" value = '<?php echo $password; ?>' maxlength = "25" size = "25"></input>
-						<script>
-						document.getElementById("password_input").onmouseover = function() {
-							show();
-						};
-						document.getElementById("password_input").onmouseout = function() {
-							hide();
-						};
-
-						function show() {
-						  document.getElementById("password_input").type = "text";
-						}
-
-						function hide() {
-						  document.getElementById("password_input").type = "password";
-						}
-						</script>
 						<br></br>
-						<label class = "text_rainbow padding">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gmail : </label>
-						<span class = "span input_rainbow no-drop" align = "left"><?php echo $gmail; ?></span>
+						<label class = "text_rainbow">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gmail : </label>
+						<span class = "gmail input_rainbow no-drop" align = "left"><?php echo $gmail; ?></span>
 					</div>
 					<br></br>
 					<div>
@@ -151,6 +135,22 @@
 						<input class = "input_rainbow pointer" type = "submit" name = "cancel" value = "Cancel"></input>
 					</div>
 				</form>
+				<script>
+					document.getElementById("password_input").onmouseover = function() {
+						show();
+					};
+					document.getElementById("password_input").onmouseout = function() {
+						hide();
+					};
+
+					function show() {
+					  document.getElementById("password_input").type = "text";
+					}
+
+					function hide() {
+					  document.getElementById("password_input").type = "password";
+					}
+					</script>
 			</div>
 		</div>
 	</body>

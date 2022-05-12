@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
 	session_start();
 	$name_save = "perdpro";
 	setcookie("perdpro", null, -1, '/');
@@ -7,6 +8,7 @@
 <html>
 	<head>
 		<link rel = "stylesheet" href = "styles.css?v = <?php echo time(); ?>"/>
+		<link rel = "stylesheet" href = "styles_logout.css?v = <?php echo time(); ?>"/>
 		<link rel = "icon" href = "source/logo_perdpro.png">
 		<title>PerdPro</title>
 	</head>

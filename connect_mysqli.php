@@ -1,4 +1,5 @@
 <?php
+	// error_reporting(0); //hide error
 	$con = mysqli_connect("localhost","root","","user_data");
 	if (mysqli_connect_errno())
 	{

@@ -2,17 +2,23 @@
 <html>
 <body>
 
+<div id="demo">
+</div>
 
-<form method = "post">
-<input type = "submit" action = "this" name = "save"  value = "Save"> </input>
-</form>
-<?php
-$t=time();
-//echo($t . "<br>");
-if (isset($_POST['save'])) {
-$time = date("d/m/Y H:i:s",strtotime('+7 hours, +543 year'));
-echo $time;
+<script>
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("POST", "http://127.0.0.1/api_auto_update.php", true);
+  xhttp.send();
 }
-?>
+loadDoc();
+</script>
+
 </body>
 </html>
